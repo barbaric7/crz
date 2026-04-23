@@ -4,11 +4,10 @@ function getFileFromURL() {
 }
 
 function mapInputToFile(input) {
-  // If user enters number → map to assignment file
   if (/^\d+$/.test(input)) {
     return `assignment_${input}.txt`;
   }
-  return input; // otherwise use as-is
+  return input; 
 }
 
 async function loadAssignment(file = null) {
@@ -16,7 +15,7 @@ async function loadAssignment(file = null) {
 
   if (!rawInput) {
     document.getElementById("output").textContent =
-      "Try: 3 or dijkstra.java";
+      "👉 Try: 3 or dijkstra.java";
     return;
   }
 
@@ -43,7 +42,9 @@ async function loadAssignment(file = null) {
 
 function loadAssignmentFromInput() {
   const val = document.getElementById("input").value.trim();
-  loadAssignment(val);
+  if (val) {
+    loadAssignment(val);
+  }
 }
 
 window.onload = () => loadAssignment();
@@ -52,13 +53,11 @@ function copyText() {
   const text = document.getElementById("output").textContent;
   const btn = document.getElementById("copyBtn");
 
-  // Helper function to show visual feedback
   const showSuccess = () => {
     btn.textContent = "Copied!";
     setTimeout(() => btn.textContent = "Copy", 2000);
   };
 
-  // Modern method
   if (navigator.clipboard && window.isSecureContext) {
     navigator.clipboard.writeText(text)
       .then(showSuccess)
@@ -72,24 +71,29 @@ function copyText() {
   }
 }
 
-// Fallback method (VERY IMPORTANT)
 function fallbackCopy(text) {
   const textarea = document.createElement("textarea");
   textarea.value = text;
-
-  // Avoid scrolling
   textarea.style.position = "fixed";
   textarea.style.opacity = "0";
-
   document.body.appendChild(textarea);
   textarea.focus();
   textarea.select();
-
   try {
     document.execCommand("copy");
-  } catch (err) {
-    // silently fail (as you wanted no alerts)
-  }
-
+  } catch (err) {}
   document.body.removeChild(textarea);
+}
+
+// --- NEW FEATURE: Trigger search on typing ---
+let typingTimer;
+const searchInput = document.getElementById('input');
+
+if (searchInput) {
+  searchInput.addEventListener('input', () => {
+    clearTimeout(typingTimer);
+    // Wait 400ms after the user stops typing to trigger the fetch. 
+    // This prevents sending a network request for every single letter typed.
+    typingTimer = setTimeout(loadAssignmentFromInput, 400);
+  });
 }
