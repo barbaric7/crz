@@ -1,5 +1,4 @@
 const BASE_URL = "https://raw.githubusercontent.com/barbaric7/daa_algorithms/main/";
-
 function getFileFromURL() {
   return window.location.pathname.slice(1);
 }
