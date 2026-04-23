@@ -27,7 +27,7 @@ pre {
   border: none;
   padding: 10px;
   white-space: pre-wrap;
-  color: #444;              /* dark grey */
+  color: #aaa;              /* dark grey */
   font-family: Consolas, monospace;
   opacity: 0.85;            /* slightly faded */
 }
@@ -41,7 +41,7 @@ pre {
   padding: 4px 8px;
   background: transparent;
   border: none;
-  color: #aaa;              /* very light */
+  color: #444;              /* very light */
   cursor: pointer;
   transition: 0.2s;
 }
