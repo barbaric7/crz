@@ -47,3 +47,15 @@ function loadAssignmentFromInput() {
 }
 
 window.onload = () => loadAssignment();
+
+function copyText() {
+  const text = document.getElementById("output").textContent;
+
+  navigator.clipboard.writeText(text)
+    .then(() => {
+      alert("Copied!");
+    })
+    .catch(() => {
+      alert("Failed to copy");
+    });
+}
