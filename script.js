@@ -50,5 +50,33 @@ window.onload = () => loadAssignment();
 
 function copyText() {
   const text = document.getElementById("output").textContent;
-  navigator.clipboard.writeText(text);
+
+  // Modern method
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+  } else {
+    fallbackCopy(text);
+  }
+}
+
+// Fallback method (VERY IMPORTANT)
+function fallbackCopy(text) {
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+
+  // Avoid scrolling
+  textarea.style.position = "fixed";
+  textarea.style.opacity = "0";
+
+  document.body.appendChild(textarea);
+  textarea.focus();
+  textarea.select();
+
+  try {
+    document.execCommand("copy");
+  } catch (err) {
+    // silently fail (as you wanted no alerts)
+  }
+
+  document.body.removeChild(textarea);
 }
