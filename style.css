@@ -1,17 +1,19 @@
 body {
   font-family: Arial, sans-serif;
   background: #ffffff;
-  color: #000;
+  color: #333;
   padding: 20px;
 }
 
 h1 {
   font-weight: 500;
+  color: #222;
 }
 
 input, button {
-  padding: 8px;
+  padding: 6px;
   margin: 5px 0;
+  font-size: 14px;
 }
 
 #output-container {
@@ -19,20 +21,32 @@ input, button {
   margin-top: 20px;
 }
 
+/* Main text */
 pre {
   background: transparent;
   border: none;
   padding: 10px;
   white-space: pre-wrap;
-  color: #000;
+  color: #444;              /* dark grey */
   font-family: Consolas, monospace;
+  opacity: 0.85;            /* slightly faded */
 }
 
+/* Copy button (subtle, right side) */
 #copyBtn {
   position: absolute;
   top: 0;
   right: 0;
-  padding: 5px 10px;
   font-size: 12px;
+  padding: 4px 8px;
+  background: transparent;
+  border: none;
+  color: #aaa;              /* very light */
   cursor: pointer;
+  transition: 0.2s;
+}
+
+/* Slightly visible on hover */
+#copyBtn:hover {
+  color: #666;
 }
