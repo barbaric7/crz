@@ -19,8 +19,6 @@ input, button {
 #output-container {
   position: relative;
   margin-top: 20px;
-  color: #aaa;              /* very light */
-
 }
 
 /* Main text */
@@ -29,7 +27,7 @@ pre {
   border: none;
   padding: 10px;
   white-space: pre-wrap;
-  color: #aaa;              /* dark grey */
+  color: #444;              /* dark grey */
   font-family: Consolas, monospace;
   opacity: 0.85;            /* slightly faded */
 }
