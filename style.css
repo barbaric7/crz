@@ -23,7 +23,7 @@ input, button {
 
 /* Main text */
 pre {
-  background: transparent;
+  background: #000000;
   border: none;
   padding: 10px;
   white-space: pre-wrap;
