@@ -1,34 +1,41 @@
+const BASE_URL = "https://raw.githubusercontent.com/barbaric7/daa_algorithms/main/";
+
 function getAssignmentFromURL() {
-  const path = window.location.pathname.slice(1);
-  return path;
+  return window.location.pathname.slice(1);
 }
 
 async function loadAssignment(num = null) {
-  const assignment = num || getAssignmentFromURL();
+  const file = num || getAssignmentFromURL();
 
-  if (!assignment) return;
+  if (!file) {
+    document.getElementById("output").textContent =
+      "👉 Enter a filename like: knapsack.cpp";
+    return;
+  }
 
-  const url = `https://raw.githubusercontent.com/YOUR_USERNAME/my-assignments/main/${assignment}.txt`;
+  const url = BASE_URL + file;
 
   try {
     const res = await fetch(url);
 
     if (!res.ok) {
-      document.getElementById("output").textContent = "❌ Assignment not found";
+      document.getElementById("output").textContent =
+        "❌ File not found\n👉 Check filename (case-sensitive)";
       return;
     }
 
     const text = await res.text();
     document.getElementById("output").textContent = text;
 
-  } catch {
-    document.getElementById("output").textContent = "⚠️ Network error";
+  } catch (err) {
+    document.getElementById("output").textContent =
+      "⚠️ Network error or blocked request";
   }
 }
 
-// Button click
+// Button support
 function loadAssignmentFromInput() {
-  const val = document.getElementById("input").value;
+  const val = document.getElementById("input").value.trim();
   loadAssignment(val);
 }
 
