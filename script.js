@@ -1,43 +1,50 @@
 const BASE_URL = "https://raw.githubusercontent.com/barbaric7/daa_algorithms/main/";
 
-function getAssignmentFromURL() {
+function getFileFromURL() {
   return window.location.pathname.slice(1);
 }
 
-async function loadAssignment(num = null) {
-  const file = num || getAssignmentFromURL();
+function mapInputToFile(input) {
+  // If user enters number → map to assignment file
+  if (/^\d+$/.test(input)) {
+    return `assignment_${input}.txt`;
+  }
+  return input; // otherwise use as-is
+}
 
-  if (!file) {
+async function loadAssignment(file = null) {
+  const rawInput = file || getFileFromURL();
+
+  if (!rawInput) {
     document.getElementById("output").textContent =
-      "👉 Enter a filename like: knapsack.cpp";
+      "👉 Try: 3 or dijkstra.java";
     return;
   }
 
-  const url = BASE_URL + file;
+  const filename = mapInputToFile(rawInput);
+  const url = BASE_URL + filename;
 
   try {
     const res = await fetch(url);
 
     if (!res.ok) {
       document.getElementById("output").textContent =
-        "❌ File not found\n👉 Check filename (case-sensitive)";
+        `❌ File not found: ${filename}`;
       return;
     }
 
     const text = await res.text();
     document.getElementById("output").textContent = text;
 
-  } catch (err) {
+  } catch {
     document.getElementById("output").textContent =
-      "⚠️ Network error or blocked request";
+      "⚠️ Network error";
   }
 }
 
-// Button support
 function loadAssignmentFromInput() {
   const val = document.getElementById("input").value.trim();
   loadAssignment(val);
 }
 
-// Auto-load from URL
 window.onload = () => loadAssignment();
