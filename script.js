@@ -50,12 +50,25 @@ window.onload = () => loadAssignment();
 
 function copyText() {
   const text = document.getElementById("output").textContent;
+  const btn = document.getElementById("copyBtn");
+
+  // Helper function to show visual feedback
+  const showSuccess = () => {
+    btn.textContent = "Copied!";
+    setTimeout(() => btn.textContent = "Copy", 2000);
+  };
 
   // Modern method
   if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+    navigator.clipboard.writeText(text)
+      .then(showSuccess)
+      .catch(() => {
+        fallbackCopy(text);
+        showSuccess();
+      });
   } else {
     fallbackCopy(text);
+    showSuccess();
   }
 }
 
