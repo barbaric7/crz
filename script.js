@@ -16,7 +16,7 @@ async function loadAssignment(file = null) {
 
   if (!rawInput) {
     document.getElementById("output").textContent =
-      "👉 Try: 3 or dijkstra.java";
+      "Try: 3 or dijkstra.java";
     return;
   }
 
