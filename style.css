@@ -41,7 +41,7 @@ pre {
   padding: 4px 8px;
   background: transparent;
   border: none;
-  color: #444;              /* very light */
+  color: #aaa;              /* very light */
   cursor: pointer;
   transition: 0.2s;
 }
