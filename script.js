@@ -85,15 +85,24 @@ function fallbackCopy(text) {
   document.body.removeChild(textarea);
 }
 
-// --- NEW FEATURE: Trigger search on typing ---
+// --- Trigger search on typing AND Enter key ---
 let typingTimer;
 const searchInput = document.getElementById('input');
 
 if (searchInput) {
+  // 1. Fetch automatically when user stops typing for 400ms
   searchInput.addEventListener('input', () => {
     clearTimeout(typingTimer);
-    // Wait 400ms after the user stops typing to trigger the fetch. 
-    // This prevents sending a network request for every single letter typed.
     typingTimer = setTimeout(loadAssignmentFromInput, 400);
+  });
+
+  // 2. Fetch immediately if user presses "Enter"
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      // Cancel the typing delay since they hit Enter
+      clearTimeout(typingTimer); 
+      // Force load instantly
+      loadAssignmentFromInput(); 
+    }
   });
 }
