@@ -6,12 +6,10 @@
 </head>
 <body>
 
-<h1>📘 Aaditya Assignments</h1>
-
-<input type="text" id="input" placeholder="Enter assignment number (e.g. 3)" />
-<button onclick="loadAssignment()">Fetch</button>
-
-<pre id="output">Your assignment will appear here...</pre>
+<div id="output-container">
+  <button id="copyBtn" onclick="copyText()">Copy</button>
+  <pre id="output">Your assignment will appear here...</pre>
+</div>
 
 <script src="script.js"></script>
 </body>
