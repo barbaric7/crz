@@ -15,7 +15,7 @@ async function loadAssignment(file = null) {
 
   if (!rawInput) {
     document.getElementById("output").textContent =
-      "👉 Try: 3 or dijkstra.java";
+      " ";
     return;
   }
 
@@ -27,7 +27,7 @@ async function loadAssignment(file = null) {
 
     if (!res.ok) {
       document.getElementById("output").textContent =
-        `❌ File not found: ${filename}`;
+        `◼️ File not found: ${filename}`;
       return;
     }
 
