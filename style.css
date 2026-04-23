@@ -19,6 +19,8 @@ input, button {
 #output-container {
   position: relative;
   margin-top: 20px;
+  color: #aaa;              /* very light */
+
 }
 
 /* Main text */
