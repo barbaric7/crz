@@ -10,6 +10,26 @@ h1 {
   color: #222;
 }
 
+/* Stealth Input Styling */
+#input {
+  background: transparent;
+  border: none;
+  color: #111; /* Barely visible against black */
+  outline: none;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 10px;
+  font-family: Consolas, monospace;
+}
+
+#input::placeholder {
+  color: #111; 
+}
+
+#input:focus {
+  color: #666; /* Lights up slightly so you can see what you type */
+}
+
 input, button {
   padding: 6px;
   margin: 5px 0;
@@ -27,27 +47,26 @@ pre {
   border: none;
   padding: 10px;
   white-space: pre-wrap;
-  color: #444;              /* dark grey */
+  color: #444;              
   font-family: Consolas, monospace;
-  opacity: 0.85;            /* slightly faded */
+  opacity: 0.85;            
 }
 
-/* Copy button (subtle, right side) */
+/* Copy button */
 #copyBtn {
   position: absolute;
   top: 0;
   right: 0;
-  z-index: 10;              /* <-- Fix: Keeps button clickable over the pre tag */
+  z-index: 10;
   font-size: 12px;
   padding: 4px 8px;
   background: transparent;
   border: none;
-  color: #aaa;              /* very light */
+  color: #aaa;              
   cursor: pointer;
   transition: 0.2s;
 }
 
-/* Slightly visible on hover */
 #copyBtn:hover {
   color: #666;
 }
