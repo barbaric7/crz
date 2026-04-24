@@ -23,7 +23,7 @@ h1 {
 }
 
 #input::placeholder {
-  color: #111; 
+  color: #aaa; 
 }
 
 #input:focus {
