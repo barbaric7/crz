@@ -14,7 +14,7 @@ h1 {
 #input {
   background: transparent;
   border: none;
-  color: #111; /* Barely visible against black */
+  color: #aaa; /* Barely visible against black */
   outline: none;
   width: 100%;
   padding: 0;
