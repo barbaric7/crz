@@ -27,7 +27,7 @@ h1 {
 }
 
 #input:focus {
-  color: #666; /* Lights up slightly so you can see what you type */
+  color: #aaa; /* Lights up slightly so you can see what you type */
 }
 
 input, button {
